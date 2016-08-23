@@ -1,3 +1,4 @@
+ace-editor:1.1
 branch-api:1.10
 cloudbees-folder:5.12
 credentials:2.1.4
