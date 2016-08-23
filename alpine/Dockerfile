@@ -82,13 +82,13 @@ USER ${user}
 COPY jenkins-support /usr/local/bin/jenkins-support
 COPY jenkins.sh /usr/local/bin/jenkins.sh
 
-# Install jenkins plugins
-COPY install-plugins.sh /usr/local/bin/install-plugins.sh
-RUN /usr/local/bin/install-plugins.sh \
-    credentials ssh-credentials script-security scm-api mailer git git-client branch-api \
-    sonar gitlab-plugin workflow-aggregator
-
 # Execute jenkins services 
 ENTRYPOINT ["/bin/tini", "--", "/usr/local/bin/jenkins.sh"]
+
+# Install jenkins plugins
+COPY plugins.sh /usr/local/bin/plugins.sh
+COPY install-plugins.sh /usr/local/bin/install-plugins.sh
+
+RUN /usr/local/bin/plugins.sh plugins.txt
 
 
