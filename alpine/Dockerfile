@@ -8,6 +8,12 @@ FROM java:openjdk-8-jdk-alpine
 # Maintainer
 MAINTAINER Open DevOps Team <open.devops@gmail.com>
 
+# Important!  Update this no-op ENV variable when this Dockerfile
+# is updated with the current date. It will force refresh of all
+# of the base images and things like `apt-get update` won't be using
+# old cached versions when the Dockerfile is built.
+ENV REFRESHED_AT 2016-08-25
+
 # Install utility tools
 RUN apk add --no-cache git openssh-client curl zip unzip bash ttf-dejavu coreutils
 
