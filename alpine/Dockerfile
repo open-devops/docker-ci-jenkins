@@ -85,7 +85,7 @@ COPY jenkins.sh /usr/local/bin/jenkins.sh
 # Install jenkins plugins
 COPY install-plugins.sh /usr/local/bin/install-plugins.sh
 RUN /usr/local/bin/install-plugins.sh \
-    credentials script-security scm-api mailer git git-client branch-api \
+    credentials ssh-credentials script-security scm-api mailer git git-client branch-api \
     sonar gitlab-plugin workflow-aggregator
 
 # Execute jenkins services 
