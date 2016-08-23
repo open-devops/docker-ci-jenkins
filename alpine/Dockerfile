@@ -81,11 +81,12 @@ USER ${user}
 
 COPY jenkins-support /usr/local/bin/jenkins-support
 COPY jenkins.sh /usr/local/bin/jenkins.sh
+
+# Install jenkins plugins
+COPY install-plugins.sh /usr/local/bin/install-plugins.sh
+RUN /usr/local/bin/install-plugins.sh script-security sonar gitlab-plugin workflow-aggregator
+
+# Execute jenkins services 
 ENTRYPOINT ["/bin/tini", "--", "/usr/local/bin/jenkins.sh"]
 
-# from a derived Dockerfile, can use `RUN plugins.sh plugins.txt` to setup /usr/share/jenkins/ref/plugins from a support bundle
-COPY install-plugins.sh /usr/local/bin/install-plugins.sh
-RUN /usr/local/bin/install-plugins.sh \
-    sonar \
-    gitlab-plugin \
-    workflow-aggregator
+
