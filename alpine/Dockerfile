@@ -1,11 +1,21 @@
+#
+# Jenkins Docker Image for Open DevOps Pipeline
+#
+# VERSION : 1.0
+#
 FROM java:openjdk-8-jdk-alpine
 
+# Maintainer
+MAINTAINER Open DevOps Team <open.devops@gmail.com>
+
+# Install utility tools
 RUN apk add --no-cache git openssh-client curl zip unzip bash ttf-dejavu coreutils
 
+# Runtime environment settings
 ENV JENKINS_HOME /var/jenkins_home
 ENV JENKINS_SLAVE_AGENT_PORT 50000
 
-
+# Build arguments setting
 ARG user=jenkins
 ARG group=jenkins
 ARG uid=1000
@@ -37,10 +47,10 @@ COPY init.groovy /usr/share/jenkins/ref/init.groovy.d/tcp-slave-agent-port.groov
 
 # jenkins version being bundled in this docker image
 ARG JENKINS_VERSION
-ENV JENKINS_VERSION ${JENKINS_VERSION:-2.7.2}
+ENV JENKINS_VERSION ${JENKINS_VERSION:-2.19}
 
 # jenkins.war checksum, download will be validated using it
-ARG JENKINS_SHA=4c05175677825a0c311ef3001bbb0a767dad0e8d
+ARG JENKINS_SHA=`curl http://repo.jenkins-ci.org/simple/releases/org/jenkins-ci/main/jenkins-war/${JENKINS_VERSION}/jenkins-war-${JENKINS_VERSION}.war.sha1`
 
 # Can be used to customize where jenkins.war get downloaded from
 ARG JENKINS_URL=http://repo.jenkins-ci.org/public/org/jenkins-ci/main/jenkins-war/${JENKINS_VERSION}/jenkins-war-${JENKINS_VERSION}.war
