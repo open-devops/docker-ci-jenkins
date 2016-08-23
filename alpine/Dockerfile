@@ -36,8 +36,8 @@ VOLUME /var/jenkins_home
 # or config file with your custom jenkins Docker image.
 RUN mkdir -p /usr/share/jenkins/ref/init.groovy.d
 
-ENV TINI_VERSION 0.9.0
-ENV TINI_SHA fa23d1e20732501c3bb8eeeca423c89ac80ed452
+ENV TINI_VERSION 0.10.0
+ENV TINI_SHA 7d00da20acc5c3eb21d959733917f6672b57dabb
 
 # Use tini as subreaper in Docker container to adopt zombie processes 
 RUN curl -fsSL https://github.com/krallin/tini/releases/download/v${TINI_VERSION}/tini-static -o /bin/tini && chmod +x /bin/tini \
