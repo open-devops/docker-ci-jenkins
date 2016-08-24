@@ -49,7 +49,8 @@ ENV TINI_SHA 7d00da20acc5c3eb21d959733917f6672b57dabb
 RUN curl -fsSL https://github.com/krallin/tini/releases/download/v${TINI_VERSION}/tini-static -o /bin/tini && chmod +x /bin/tini \
   && echo "$TINI_SHA  /bin/tini" | sha1sum -c -
 
-COPY init.groovy /usr/share/jenkins/ref/init.groovy.d/tcp-slave-agent-port.groovy
+COPY tcp-slave-agent-port.groovy /usr/share/jenkins/ref/init.groovy.d/tcp-slave-agent-port.groovy
+COPY setup-security-control.groovy /usr/share/jenkins/ref/init.groovy.d/setup-security-control.groovy
 
 # jenkins version being bundled in this docker image
 ARG JENKINS_VERSION

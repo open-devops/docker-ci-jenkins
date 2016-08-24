@@ -7,13 +7,14 @@
 version: '2'
 
 services:
-  cap_ci:
+  jenkins:
     image: devopsopen/docker-ci-jenkins:alpine
     ports:
       - "50000:50000"
-      - "8080:8080"  
+      - "8080:8080"
+    env_file:
+      - jenkins-master.env
     environment:
-      - JAVA_OPTS=-Djava.awt.headless=true -Djenkins.install.runSetupWizard=false -Dhttp.proxyHost=${http_proxy_host} -Dhttp.proxyPort=${http_proxy_port} -Dhttps.proxyHost=${https_proxy_host} -Dhttps.proxyPort=${https_proxy_port}
       - http_proxy=${http_proxy}
       - https_proxy=${https_proxy}
       - no_proxy=${no_proxy}
