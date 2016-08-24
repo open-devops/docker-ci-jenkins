@@ -8,7 +8,7 @@ FROM jenkins
 MAINTAINER Open DevOps Team <open.devops@gmail.com>
 
 #for admin user
-COPY basic-security.groovy /var/jenkins_home/init.groovy.d
+#COPY basic-security.groovy /var/jenkins_home/init.groovy.d
 
 #install plugin
 COPY plugins.txt /tmp/plugins.txt
