@@ -87,8 +87,8 @@ COPY jenkins.sh /usr/local/bin/jenkins.sh
 COPY plugins.sh /usr/local/bin/plugins.sh
 COPY install-plugins.sh /usr/local/bin/install-plugins.sh
 
-COPY plugins.txt /plugins.txt
-RUN /usr/local/bin/plugins.sh /plugins.txt
+COPY plugins.txt /usr/share/jenkins/ref/plugins.txt
+RUN /usr/local/bin/plugins.sh /usr/share/jenkins/ref/plugins.txt
 
 # Execute jenkins services 
 ENTRYPOINT ["/bin/tini", "--", "/usr/local/bin/jenkins.sh"]
