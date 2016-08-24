@@ -10,6 +10,7 @@ git-server:1.7
 gitlab-plugin:1.3.0
 handlebars:1.1.1
 icon-shim:2.0.3
+jquery:1.11.2-0
 jquery-detached:1.2.1
 junit:1.18
 mailer:1.17
