@@ -32,14 +32,15 @@ VOLUME /var/jenkins_home
 # or config file with your custom jenkins Docker image.
 RUN mkdir -p /usr/share/jenkins/ref/init.groovy.d
 
-ENV TINI_VERSION 0.9.0
-ENV TINI_SHA fa23d1e20732501c3bb8eeeca423c89ac80ed452
+ENV TINI_VERSION 0.10.0
+ENV TINI_SHA 7d00da20acc5c3eb21d959733917f6672b57dabb
 
 # Use tini as subreaper in Docker container to adopt zombie processes 
 RUN curl -fsSL https://github.com/krallin/tini/releases/download/v${TINI_VERSION}/tini-static -o /bin/tini && chmod +x /bin/tini \
   && echo "$TINI_SHA  /bin/tini" | sha1sum -c -
 
-COPY init.groovy /usr/share/jenkins/ref/init.groovy.d/tcp-slave-agent-port.groovy
+COPY tcp-slave-agent-port.groovy /usr/share/jenkins/ref/init.groovy.d/tcp-slave-agent-port.groovy
+COPY setup-security-control.groovy /usr/share/jenkins/ref/init.groovy.d/setup-security-control.groovy
 
 # jenkins version being bundled in this docker image
 ARG JENKINS_VERSION
@@ -71,15 +72,12 @@ USER ${user}
 
 COPY jenkins-support /usr/local/bin/jenkins-support
 COPY jenkins.sh /usr/local/bin/jenkins.sh
-ENTRYPOINT ["/bin/tini", "--", "/usr/local/bin/jenkins.sh"]
 
-# from a derived Dockerfile, can use `RUN plugins.sh active.txt` to setup /usr/share/jenkins/ref/plugins from a support bundle
+# Install jenkins plugins
 COPY plugins.sh /usr/local/bin/plugins.sh
 COPY install-plugins.sh /usr/local/bin/install-plugins.sh
 
-#for admin user
-#COPY basic-security.groovy /var/jenkins_home/init.groovy.d
+COPY plugins.txt /plugins.txt
+RUN /usr/local/bin/plugins.sh /plugins.txt
 
-#install plugin
-COPY plugins.txt /tmp/plugins.txt
-RUN /usr/local/bin/plugins.sh /tmp/plugins.txt
+ENTRYPOINT ["/bin/tini", "--", "/usr/local/bin/jenkins.sh"]

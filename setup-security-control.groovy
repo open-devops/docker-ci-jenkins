@@ -10,7 +10,7 @@ if (!instance.isUseSecurity()) {
     println "--> creating local user 'admin'"
 
     def hudsonRealm = new HudsonPrivateSecurityRealm(false)
-    hudsonRealm.createAccount('admin', '1Qaz2wsx')
+    hudsonRealm.createAccount('admin', 'admin')
     instance.setSecurityRealm(hudsonRealm)
 
     def strategy = new FullControlOnceLoggedInAuthorizationStrategy()
