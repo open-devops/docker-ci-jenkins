@@ -1,5 +1,4 @@
 sonar:2.4.4
-swarm:2.2
 ace-editor:1.1
 branch-api:1.10
 cloudbees-folder:5.12
