@@ -15,7 +15,20 @@ MAINTAINER Open DevOps Team <open.devops@gmail.com>
 ENV REFRESHED_AT 2016-08-25
 
 # Install utility tools
-RUN apk add --no-cache git openssh-client curl zip unzip bash ttf-dejavu coreutils
+RUN apk add --no-cache 
+    git \ 
+    openssh-client \
+    curl \
+    zip \
+    unzip \
+    bash \
+    ttf-dejavu \
+    coreutils \
+    python && \
+    python -m ensurepip && \
+    rm -r /usr/lib/python*/ensurepip && \
+    pip install --upgrade pip setuptools && \
+    rm -r /root/.cache
 
 # Runtime environment settings
 ENV JENKINS_HOME /var/jenkins_home
