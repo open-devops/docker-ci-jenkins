@@ -15,7 +15,7 @@ MAINTAINER Open DevOps Team <open.devops@gmail.com>
 ENV REFRESHED_AT 2016-08-25
 
 # Install utility tools
-RUN apk add --no-cache 
+RUN apk add --no-cache \
     git \ 
     openssh-client \
     curl \
