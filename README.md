@@ -1,3 +1,12 @@
+# CI/CD Management - Jenkins
+CI jenkins Image for Open DevOps Pipeline
+
+- Uses latest OS / TINI / Jenkins releases
+- Installs latest plugins
+- Setup Aggent port
+- Avoid 2.0 setup wizard but provide secure-by-default configuration
+- Enables Slave → Master Access Control
+
 # docker-ci-jenkins
 CI jenkins Image for Open DevOps Pipeline
 
