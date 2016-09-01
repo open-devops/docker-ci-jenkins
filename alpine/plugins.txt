@@ -23,7 +23,7 @@ mock-slave:1.9
 momentjs:1.1.1
 pipeline-build-step:2.2
 pipeline-input-step:2.1
-pipeline-rest-api:1.7
+pipeline-rest-api:2.0
 pipeline-stage-step:2.2
 pipeline-stage-view:2.0
 plain-credentials:1.2
