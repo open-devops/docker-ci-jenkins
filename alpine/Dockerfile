@@ -103,5 +103,9 @@ COPY install-plugins.sh /usr/local/bin/install-plugins.sh
 COPY plugins.txt /usr/share/jenkins/ref/plugins.txt
 RUN /usr/local/bin/plugins.sh /usr/share/jenkins/ref/plugins.txt
 
+# Enable Slave → Master Access Control
+# https://wiki.jenkins-ci.org/display/JENKINS/Slave+To+Master+Access+Control
+COPY slave-to-master-security-kill-switch $JENKINS_HOME/secrets/slave-to-master-security-kill-switch
+
 # Execute jenkins services 
 ENTRYPOINT ["/bin/tini", "--", "/usr/local/bin/jenkins.sh"]
