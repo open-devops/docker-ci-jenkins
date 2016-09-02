@@ -91,11 +91,6 @@ EXPOSE 50000
 
 ENV COPY_REFERENCE_FILE_LOG $JENKINS_HOME/copy_reference_file.log
 
-# Enable Slave → Master Access Control
-# https://wiki.jenkins-ci.org/display/JENKINS/Slave+To+Master+Access+Control
-RUN mkdir -p $JENKINS_HOME/secrets
-COPY slave-to-master-security-kill-switch $JENKINS_HOME/secrets/slave-to-master-security-kill-switch
-
 USER ${user}
 
 COPY jenkins-support /usr/local/bin/jenkins-support
