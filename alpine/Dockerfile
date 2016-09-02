@@ -12,7 +12,7 @@ MAINTAINER Open DevOps Team <open.devops@gmail.com>
 # is updated with the current date. It will force refresh of all
 # of the base images and things like `apt-get update` won't be using
 # old cached versions when the Dockerfile is built.
-ENV REFRESHED_AT 2016-08-25
+ENV REFRESHED_AT 2016-09-01
 
 # Install utility tools
 RUN apk add --no-cache \
