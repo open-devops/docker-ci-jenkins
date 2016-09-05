@@ -29,5 +29,3 @@ copy_reference_files() {
 
 export -f copy_reference_file
 copy_reference_files
-
-exec "$@"
