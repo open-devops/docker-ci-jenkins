@@ -22,6 +22,7 @@ credentials:2.1.4
 credentials-binding:1.9
 dashboard-view:2.9.10
 display-url-api:0.2
+docker-plugin:0.16.1
 durable-task:1.12
 email-ext:2.47
 external-monitor-job:1.6
