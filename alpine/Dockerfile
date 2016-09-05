@@ -16,7 +16,8 @@ ENV REFRESHED_AT 2016-09-01
 
 # Install utility tools
 RUN apk add --no-cache \
-    git \ 
+    git \
+    subversion \
     openssh-client \
     curl \
     zip \
@@ -84,7 +85,7 @@ RUN curl -fsSL ${JENKINS_URL} -o /usr/share/jenkins/jenkins.war \
 ENV JENKINS_UC https://updates.jenkins.io
 RUN chown -R ${user} "$JENKINS_HOME" /usr/share/jenkins/ref
 
-# Install Maven support
+# Install Maven
 ARG MAVEN_VERSION=3.3.9
 ARG USER_HOME_DIR="/root"
 RUN mkdir -p /usr/share/maven /usr/share/maven/ref \
@@ -93,6 +94,9 @@ RUN mkdir -p /usr/share/maven /usr/share/maven/ref \
   && ln -s /usr/share/maven/bin/mvn /usr/bin/mvn
 ENV MAVEN_HOME /usr/share/maven
 ENV MAVEN_CONFIG "$USER_HOME_DIR/.m2"
+COPY mvn-entrypoint.sh /usr/local/bin/mvn-entrypoint.sh
+COPY mvn-settings-docker.xml /usr/share/maven/ref/
+RUN /usr/local/bin/mvn-entrypoint.sh
 
 # for main web interface:
 EXPOSE 8080
