@@ -3,10 +3,10 @@
 # CI/CD Management - Jenkins
 CI jenkins Image for Open DevOps Pipeline
 
-- Uses latest OS / TINI / Jenkins releases
+- Use latest OS / TINI / Jenkins releases
 - Avoid 2.0 setup wizard but provide secure-by-default configuration
-- Installs default suggested plugins
-- Installs Additional Useful plugins
+- Install default suggested plugins
+- Install Additional Useful plugins
     - [Blue Ocean](https://jenkins.io/projects/blueocean/)
 - Setup Agent port
 
@@ -17,7 +17,7 @@ CI jenkins Image for Open DevOps Pipeline
 docker pull devopsopen/docker-ci-jenkins
 
 # docker run
-docker run -d -p 9080:8080 --name jenkins devopsopen/docker-ci-jenkins
+docker run -d -p 8080:8080  -p 50000:50000 --name jenkins devopsopen/docker-ci-jenkins
 
 # web access
-http://docker-host-machine-ip:9080
+http://docker-host-machine-ip:8080

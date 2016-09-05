@@ -10,6 +10,7 @@ blueocean-events:1.0.0-b01
 blueocean-jwt:1.0.0-b01
 blueocean-personalization:1.0.0-b01
 blueocean-pipeline-api-impl:1.0.0-b01
+blueocean-rest:1.0.0-b01
 blueocean-rest-impl:1.0.0-b01
 blueocean-web:1.0.0-b01
 bouncycastle-api:2.16.0
