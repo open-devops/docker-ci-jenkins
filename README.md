@@ -4,10 +4,11 @@
 CI jenkins Image for Open DevOps Pipeline
 
 - Uses latest OS / TINI / Jenkins releases
-- Installs latest plugins
-- Setup Aggent port
 - Avoid 2.0 setup wizard but provide secure-by-default configuration
-- Enables Slave → Master Access Control
+- Installs default suggested plugins
+- Installs Additional Useful plugins
+    - [Blue Ocean](https://jenkins.io/projects/blueocean/)
+- Setup Agent port
 
 # docker-ci-jenkins
 CI jenkins Image for Open DevOps Pipeline
