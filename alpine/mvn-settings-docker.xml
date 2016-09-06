@@ -3,4 +3,11 @@
   xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0
                       https://maven.apache.org/xsd/settings-1.0.0.xsd">
   <localRepository>/usr/share/maven/ref/repository</localRepository>
+  <proxies>
+    <proxy>
+      <host>${http_proxy_host}</host>
+      <port>${https_proxy_port}</port>
+      <nonProxyHosts>${no_proxy}</nonProxyHosts>
+    </proxy>
+  </proxies>
 </settings>
