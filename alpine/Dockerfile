@@ -90,7 +90,7 @@ ARG MAVEN_VERSION=3.3.9
 ARG USER_HOME_DIR="/root"
 ENV MAVEN_CONFIG "$USER_HOME_DIR/.m2"
 ENV MAVEN_HOME /usr/share/maven
-ENV JENKINS_MAVEN_CONFIG "MAVEN_HOME/conf"
+ENV JENKINS_MAVEN_CONFIG "$MAVEN_HOME/conf"
 
 RUN mkdir -p /usr/share/maven /usr/share/maven/ref $MAVEN_CONFIG \
   && curl -fsSL http://apache.osuosl.org/maven/maven-3/$MAVEN_VERSION/binaries/apache-maven-$MAVEN_VERSION-bin.tar.gz \
