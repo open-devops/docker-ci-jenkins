@@ -72,7 +72,7 @@ RUN mkdir -p /usr/share/maven /usr/share/maven/ref $MAVEN_CONFIG \
   && ln -s /usr/share/maven/bin/mvn /usr/bin/mvn
 
 COPY mvn-entrypoint.sh /usr/local/bin/mvn-entrypoint.sh
-COPY mvn-settings-docker.xml /usr/share/maven/ref/
+COPY mvn-settings-docker.xml $MAVEN_CONFIG/settings.xml
 RUN /usr/local/bin/mvn-entrypoint.sh
 
 # for main web interface:

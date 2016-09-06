@@ -19,7 +19,7 @@ copy_reference_file() {
     cp -r "${f}" "${MAVEN_CONFIG}/${rel}";
   fi;
 }
-
+m
 copy_reference_files() {
   local log="$MAVEN_CONFIG/copy_reference_file.log"
   touch "${log}" || (echo "Can not write to ${log}. Wrong volume permissions?" && exit 1)
