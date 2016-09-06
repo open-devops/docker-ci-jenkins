@@ -100,7 +100,8 @@ RUN mkdir -p /usr/share/maven /usr/share/maven/ref $MAVEN_CONFIG \
 COPY mvn-entrypoint.sh /usr/local/bin/mvn-entrypoint.sh
 COPY mvn-settings-docker.xml $MAVEN_CONFIG/settings.xml
 RUN /usr/local/bin/mvn-entrypoint.sh \
-  && cp -f $MAVEN_CONFIG/settings.xml $JENKINS_MAVEN_CONFIG/settings.xml
+  && cp -f $MAVEN_CONFIG/settings.xml $JENKINS_MAVEN_CONFIG/settings.xml \
+  && chown -R ${user} "$MAVEN_HOME"
 
 # for main web interface:
 EXPOSE 8080
@@ -121,6 +122,10 @@ COPY install-plugins.sh /usr/local/bin/install-plugins.sh
 
 COPY plugins.txt /usr/share/jenkins/ref/plugins.txt
 RUN /usr/local/bin/plugins.sh /usr/share/jenkins/ref/plugins.txt
+
+# Jenkins home directory is a volume, so configuration and build history
+# can be persisted and survive image upgrades
+VOLUME /var/jenkins_home
 
 # Execute jenkins services 
 ENTRYPOINT ["/bin/tini", "--", "/usr/local/bin/jenkins.sh"]

@@ -23,10 +23,6 @@ ARG gid=1000
 RUN groupadd -g ${gid} ${group} \
     && useradd -d "$JENKINS_HOME" -u ${uid} -g ${gid} -m -s /bin/bash ${user}
 
-# Jenkins home directory is a volume, so configuration and build history 
-# can be persisted and survive image upgrades
-VOLUME /var/jenkins_home
-
 # `/usr/share/jenkins/ref/` contains all reference configuration we want 
 # to set on a fresh new installation. Use it to bundle additional plugins 
 # or config file with your custom jenkins Docker image.
@@ -75,7 +71,8 @@ RUN mkdir -p /usr/share/maven /usr/share/maven/ref $MAVEN_CONFIG \
 COPY mvn-entrypoint.sh /usr/local/bin/mvn-entrypoint.sh
 COPY mvn-settings-docker.xml $MAVEN_CONFIG/settings.xml
 RUN /usr/local/bin/mvn-entrypoint.sh \
-  && cp -f $MAVEN_CONFIG/settings.xml $JENKINS_MAVEN_CONFIG/settings.xml
+  && cp -f $MAVEN_CONFIG/settings.xml $JENKINS_MAVEN_CONFIG/settings.xml \
+  && chown -R ${user} "$MAVEN_HOME"
 
 # for main web interface:
 EXPOSE 8080
@@ -96,5 +93,9 @@ COPY install-plugins.sh /usr/local/bin/install-plugins.sh
 
 COPY plugins.txt /usr/share/jenkins/ref/plugins.txt
 RUN /usr/local/bin/plugins.sh /usr/share/jenkins/ref/plugins.txt
+
+# Jenkins home directory is a volume, so configuration and build history
+# can be persisted and survive image upgrades
+VOLUME /var/jenkins_home
 
 ENTRYPOINT ["/bin/tini", "--", "/usr/local/bin/jenkins.sh"]
