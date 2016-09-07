@@ -8,6 +8,7 @@ CI jenkins Image for Open DevOps Pipeline
 - Install default suggested plugins
 - Install Additional Useful plugins
     - [Blue Ocean](https://jenkins.io/projects/blueocean/)
+    - [Docker Pipeline Plugin](https://wiki.jenkins-ci.org/display/JENKINS/CloudBees+Docker+Pipeline+Plugin)
 - Setup Agent port
 
 # docker-ci-jenkins
