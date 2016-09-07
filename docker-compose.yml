@@ -28,6 +28,7 @@ services:
       - http_proxy_port=${http_proxy_port}
       - https_proxy_host=${https_proxy_host}
       - https_proxy_port=${https_proxy_port}
+      - DOCKER_HOST=${DOCKER_HOST}
     restart: never
     volumes:
       - /var/jenkins_home
