@@ -10,8 +10,8 @@ MAINTAINER Open DevOps Team <open.devops@gmail.com>
 ENV REFRESHED_AT 2016-09-09
 
 # Runtime environment settings
-ENV JENKINS_HOME /var/jenkins_home \
-    JENKINS_SLAVE_AGENT_PORT 50000
+ENV JENKINS_HOME /var/jenkins_home
+ENV JENKINS_SLAVE_AGENT_PORT 50000
 
 # Build arguments setting
 ARG user=jenkins
@@ -30,8 +30,8 @@ RUN addgroup -g ${gid} ${group} \
 # or config file with your custom jenkins Docker image.
 RUN mkdir -p /usr/share/jenkins/ref/init.groovy.d
 
-ENV TINI_VERSION 0.10.0 \
-    TINI_SHA 7d00da20acc5c3eb21d959733917f6672b57dabb
+ENV TINI_VERSION 0.10.0
+ENV TINI_SHA 7d00da20acc5c3eb21d959733917f6672b57dabb
 
 # Use tini as subreaper in Docker container to adopt zombie processes
 RUN curl -fsSL https://github.com/krallin/tini/releases/download/v${TINI_VERSION}/tini-static -o /bin/tini && chmod +x /bin/tini \
@@ -53,7 +53,7 @@ ARG JENKINS_URL=http://repo.jenkins-ci.org/public/org/jenkins-ci/main/jenkins-wa
 # could use ADD but this one does not check Last-Modified header neither does it allow to control checksum
 # see https://github.com/docker/docker/issues/8331
 RUN curl -fsSL ${JENKINS_URL} -o /usr/share/jenkins/jenkins.war \
-  && echo "${JENKINS_SHA}  /usr/share/jenkins/jenkins.war" | sha1sum -c -
+    && echo "${JENKINS_SHA}  /usr/share/jenkins/jenkins.war" | sha1sum -c -
 
 ENV JENKINS_UC https://updates.jenkins.io
 RUN chown -R ${user} "$JENKINS_HOME" /usr/share/jenkins/ref
@@ -61,20 +61,20 @@ RUN chown -R ${user} "$JENKINS_HOME" /usr/share/jenkins/ref
 # Install Maven
 ARG MAVEN_VERSION=3.3.9
 ARG USER_HOME_DIR="/root"
-ENV MAVEN_CONFIG "$USER_HOME_DIR/.m2" \
-    MAVEN_HOME /usr/share/maven \
-    JENKINS_MAVEN_CONFIG "$MAVEN_HOME/conf"
+ENV MAVEN_CONFIG "$USER_HOME_DIR/.m2"
+ENV MAVEN_HOME /usr/share/maven
+ENV JENKINS_MAVEN_CONFIG "$MAVEN_HOME/conf"
 
 RUN mkdir -p /usr/share/maven /usr/share/maven/ref $MAVEN_CONFIG \
-  && curl -fsSL http://apache.osuosl.org/maven/maven-3/$MAVEN_VERSION/binaries/apache-maven-$MAVEN_VERSION-bin.tar.gz \
-    | tar -xzC /usr/share/maven --strip-components=1 \
-  && ln -s /usr/share/maven/bin/mvn /usr/bin/mvn
+    && curl -fsSL http://apache.osuosl.org/maven/maven-3/$MAVEN_VERSION/binaries/apache-maven-$MAVEN_VERSION-bin.tar.gz \
+       | tar -xzC /usr/share/maven --strip-components=1 \
+    && ln -s /usr/share/maven/bin/mvn /usr/bin/mvn
 
 COPY mvn-entrypoint.sh /usr/local/bin/mvn-entrypoint.sh
 COPY mvn-settings-docker.xml $MAVEN_CONFIG/settings.xml
 RUN /usr/local/bin/mvn-entrypoint.sh \
-  && cp -f $MAVEN_CONFIG/settings.xml $JENKINS_MAVEN_CONFIG/settings.xml \
-  && chown -R ${user} "$MAVEN_HOME"
+    && cp -f $MAVEN_CONFIG/settings.xml $JENKINS_MAVEN_CONFIG/settings.xml \
+    && chown -R ${user} "$MAVEN_HOME"
 
 # for main web interface:
 EXPOSE 8080
