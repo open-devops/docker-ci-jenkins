@@ -5,15 +5,8 @@
   <localRepository>/usr/share/maven/ref/repository</localRepository>
   <proxies>
     <proxy>
-      <protocol>http</protocol>
       <host>${http_proxy_host}</host>
       <port>${http_proxy_port}</port>
-      <nonProxyHosts>${no_proxy}</nonProxyHosts>
-    </proxy>
-    <proxy>
-      <protocol>https</protocol>
-      <host>${https_proxy_host}</host>
-      <port>${https_proxy_port}</port>
       <nonProxyHosts>${no_proxy}</nonProxyHosts>
     </proxy>
   </proxies>
