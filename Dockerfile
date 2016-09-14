@@ -42,10 +42,10 @@ COPY setup-security-control.groovy /usr/share/jenkins/ref/init.groovy.d/setup-se
 
 # jenkins version being bundled in this docker image
 ARG JENKINS_VERSION
-ENV JENKINS_VERSION ${JENKINS_VERSION:-2.21}
+ENV JENKINS_VERSION ${JENKINS_VERSION:-2.22}
 
 # jenkins.war checksum, download will be validated using it
-ARG JENKINS_SHA=00c3f47bb8e3cb5619428ef73370939b187cc9d1
+ARG JENKINS_SHA=5b89b6967e7af8119c52c7e86223b47665417a22
 
 # Can be used to customize where jenkins.war get downloaded from
 ARG JENKINS_URL=http://repo.jenkins-ci.org/public/org/jenkins-ci/main/jenkins-war/${JENKINS_VERSION}/jenkins-war-${JENKINS_VERSION}.war
