@@ -5,9 +5,9 @@
   <localRepository>/usr/share/maven/ref/repository</localRepository>
   <proxies>
     <proxy>
-      <host>${http_proxy_host}</host>
-      <port>${http_proxy_port}</port>
-      <nonProxyHosts>${no_proxy}</nonProxyHosts>
+      <host>${M2_PROXY_HOST}</host>
+      <port>${M2_PROXY_PORT}</port>
+      <nonProxyHosts>${M2_NO_PROXY}</nonProxyHosts>
     </proxy>
   </proxies>
 </settings>
