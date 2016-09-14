@@ -6,7 +6,7 @@
   <proxies>
     <proxy>
       <host>${M2_PROXY_HOST}</host>
-      <port>${M2_PROXY_PORT}</port>
+      <port>8080</port>
       <nonProxyHosts>${M2_NO_PROXY}</nonProxyHosts>
     </proxy>
   </proxies>
