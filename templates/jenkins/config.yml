@@ -1,0 +1,8 @@
+name: Jenkins
+description: |
+  Open DevOps Jenkins Catalog
+version: 1.0.0
+category: CI 
+maintainer: open.devops@gmail.com
+license: Apache 2
+projectURL: https://github.com/open-devops/rancher-catalog

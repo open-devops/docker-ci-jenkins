@@ -1,0 +1,5 @@
+# continous integration : jenkins
+jenkins:
+  image: devopsopen/docker-ci-jenkins
+  ports:
+    - "7080:8080"
