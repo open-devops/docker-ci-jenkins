@@ -7,7 +7,7 @@ FROM devopsopen/docker-base
 
 MAINTAINER Open DevOps Team <open.devops@gmail.com>
 
-ENV REFRESHED_AT 2016-09-09
+ENV REFRESHED_AT 2017-01-22
 
 # Runtime environment settings
 ENV JENKINS_HOME /var/jenkins_home
