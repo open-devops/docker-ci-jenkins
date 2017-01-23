@@ -1,4 +1,4 @@
-git #
+#
 # Jenkins Docker Image for Open DevOps Pipeline
 #
 # VERSION : 1.0
