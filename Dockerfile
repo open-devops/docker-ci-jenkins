@@ -1,4 +1,4 @@
-#
+git #
 # Jenkins Docker Image for Open DevOps Pipeline
 #
 # VERSION : 1.0
@@ -42,10 +42,10 @@ COPY setup-security-control.groovy /usr/share/jenkins/ref/init.groovy.d/setup-se
 
 # jenkins version being bundled in this docker image
 ARG JENKINS_VERSION
-ENV JENKINS_VERSION ${JENKINS_VERSION:-2.27}
+ENV JENKINS_VERSION ${JENKINS_VERSION:-2.41}
 
 # jenkins.war checksum, download will be validated using it
-ARG JENKINS_SHA=63a9d2f3616744b6258da83c65a19ea17283bc1f
+ARG JENKINS_SHA=ed360bd0d720b5b5b78e0af979944779034065d6
 
 # Can be used to customize where jenkins.war get downloaded from
 ARG JENKINS_URL=http://repo.jenkins-ci.org/public/org/jenkins-ci/main/jenkins-war/${JENKINS_VERSION}/jenkins-war-${JENKINS_VERSION}.war
