@@ -7,7 +7,7 @@ FROM devopsopen/docker-base
 
 MAINTAINER Open DevOps Team <open.devops@gmail.com>
 
-ENV REFRESHED_AT 2017-01-22
+ENV REFRESHED_AT 2017-04-17
 
 # Runtime environment settings
 ENV JENKINS_HOME /var/jenkins_home
@@ -42,10 +42,10 @@ COPY setup-security-control.groovy /usr/share/jenkins/ref/init.groovy.d/setup-se
 
 # jenkins version being bundled in this docker image
 ARG JENKINS_VERSION
-ENV JENKINS_VERSION ${JENKINS_VERSION:-2.41}
+ENV JENKINS_VERSION ${JENKINS_VERSION:-2.55}
 
 # jenkins.war checksum, download will be validated using it
-ARG JENKINS_SHA=ed360bd0d720b5b5b78e0af979944779034065d6
+ARG JENKINS_SHA=eaecd799c589506f288f5fc026da6b42bf00b818
 
 # Can be used to customize where jenkins.war get downloaded from
 ARG JENKINS_URL=http://repo.jenkins-ci.org/public/org/jenkins-ci/main/jenkins-war/${JENKINS_VERSION}/jenkins-war-${JENKINS_VERSION}.war
