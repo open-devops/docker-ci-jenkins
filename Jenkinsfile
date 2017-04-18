@@ -12,7 +12,6 @@ pipeline {
           sh 'echo "call mvn springboot:run"'
         }
         
-        waitUntil()
       }
     }
     stage('Test') {
